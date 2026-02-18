@@ -1,6 +1,8 @@
 # Importation du module CustomTkinter
-import customtkinter as ctk
-from CTkMessagebox import CTkMessagebox 
+from customtkinter import *
+from CTkMessagebox import *
+
+from PIL import Image
 
 # Thème visuel global
 COLORS = {
@@ -27,7 +29,7 @@ FONTS = {
 
 
 # Création de la fenêtre principale
-root = ctk.CTk()
+root = CTk()
 
 # Frame principale
 # main_frame = ctk.CTkFrame(root, fg_color=COLORS["bg"])
@@ -35,11 +37,23 @@ root = ctk.CTk()
 
 
 # Personnalisation de la fenêtre
-root.title("Menu Operateur")
+root.title("Se connecter")
 root.geometry("930x478")
-root.minsize(500, 480)
+root.resizable(0, 0)
 root.configure(fg_color=COLORS["bg"])
+image = CTkImage(Image.open("cover.jpg"), size=(930,478))
+imagelabel = CTkLabel(root, image=image)
+imagelabel.place(x=50 , y=0)
 
+# Titre pricipal
+titre = CTkLabel(root, 
+                 text="Systéme de gestion d'employer", 
+                 font=FONTS["title"],
+                 text_color=COLORS["primary"],
+                 fg_color=COLORS["bg"]
+                 
+                 )
+titre.place(x=20, y=100)
 
 
 
