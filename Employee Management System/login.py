@@ -5,7 +5,29 @@ from PIL import Image
 
 import style as s
 
-
+# Page de connexion
+def login_page():
+    if user_name_entry.get() == "" or user_mdp_entry.get() == "":
+        #CTkMessagebox(title="Erreur", message="Tous les champs doivent etre remplis", icon="cancel")
+        msg = CTkLabel(type_zone_frame, 
+                 text="Tous les champs doivent \n etre remplis", justify="center",
+                 font=("Helvetica", 12), 
+                 text_color=s.COLORS["danger"]).place(x=28, y=180)
+                    
+    elif user_name_entry.get() == "adm" and user_mdp_entry.get() == "adm":
+        #CTkMessagebox(title="Succés", message=f"Connecter entant que {user_name_entry}", icon="info")
+        root.destroy()
+        import ems
+    else:
+        msg = CTkLabel(type_zone_frame, 
+                 text="Nom d'utilisateur ou \n mot de passe incorrect", justify="center",
+                 font=("Helvetica", 12), 
+                 text_color=s.COLORS["danger"]).place(x=34, y=180)
+        user_name_entry.delete(0, END)
+        user_mdp_entry.delete(0, END)
+        #CTkMessagebox(title="Erreur", message="Nom d'utilisateur ou mot de passe incorrect", icon="cancel")
+    
+        
 # Création de la fenêtre principale
 root = CTk()
 
@@ -54,7 +76,8 @@ user_name_entry = CTkEntry(type_zone_frame,
                          fg_color="white",
                          border_width=2,
                          border_color=s.COLORS["bg"],
-                         ).place(x=32, y=50)
+                         )
+user_name_entry.place(x=32, y=50)
 
 user_mdp_entry = CTkEntry(type_zone_frame, 
                          placeholder_text="mot de passe", show="*",
@@ -67,11 +90,13 @@ user_mdp_entry.place(x=32, y=90)
 
 login_btn = CTkButton(type_zone_frame, 
                       text="Se connecter",
+                      font=s.FONTS["button"],
                       text_color="white", 
                       fg_color=s.COLORS["primary"],
                       hover_color=s.COLORS["primary_hover"],
                       corner_radius=5,
-                      cursor="hand2"
+                      cursor="hand2",
+                      command=login_page
                       )
 login_btn.place(x=32, y=140)
 
