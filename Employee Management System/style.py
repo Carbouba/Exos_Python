@@ -9,6 +9,7 @@ COLORS = {
     "success_hover": "#047857",
     "danger": "#DC2626",
     "danger_hover": "#B91C1C",
+    "danger_light": "#FF8282",
     "text": "#0F172A",
     "muted": "#475569",
     "border": "#D9E2EC",
@@ -20,5 +21,6 @@ FONTS = {
     "subtitle": ("Helvetica", 14),
     "button": ("Helvetica", 16, "bold"),
     "body": ("Helvetica", 13),
+    "label":("Montserrat", 13, "bold")
 }
 
