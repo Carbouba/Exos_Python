@@ -4,8 +4,38 @@ from CTkMessagebox import *
 from PIL import Image
 from tkinter import ttk 
 
+# importation des style et des fonctions
 import style as s
 from fonctions import add_employee
+
+""" Fonction qui verifie si les champs du formulaire sont vides ou pas, 
+si oui elle affiche un message d'erreur et met en surbrillance les champs vides, 
+sinon elle ajoute l'employé à la base de données et affiche un message de succès. """
+
+def check_fields_impty():
+    # Récupération des données du formulaire
+    # si un champ est vide, afficher un message d'erreur et mettre en surbrillance les champs vides
+    if id_entry.get() == "" or name_entry.get() == "" or prenom_entry.get() == "" or phone_entry.get() == "" or role_combx.get() == "" or genre_combx.get() == "" or salaire_entry.get() == "" :
+        CTkMessagebox(title="Erreur", message="Veuillez remplir tous les champs", icon="cancel")
+        # Mettre en surbrillance les champs vides
+        id_entry.configure(border_color=s.COLORS["danger_light"])
+        name_entry.configure(border_color=s.COLORS["danger_light"])
+        prenom_entry.configure(border_color=s.COLORS["danger_light"]) 
+        phone_entry.configure(border_color=s.COLORS["danger_light"])
+        role_combx.configure(border_color=s.COLORS["danger_light"])
+        genre_combx.configure(border_color=s.COLORS["danger_light"])
+        salaire_entry.configure(border_color=s.COLORS["danger_light"])
+        # Après 3 secondes, réinitialiser la couleur des bordures
+        id_entry.after(3000, lambda: id_entry.configure(border_color=s.COLORS["bg"]))
+        name_entry.after(3000, lambda: name_entry.configure(border_color=s.COLORS["bg"]))
+        prenom_entry.after(3000, lambda: prenom_entry.configure(border_color=s.COLORS["bg"]))
+        phone_entry.after(3000, lambda: phone_entry.configure(border_color=s.COLORS["bg"]))
+        role_combx.after(3000, lambda: role_combx.configure(border_color=s.COLORS["bg"]))
+        genre_combx.after(3000, lambda: genre_combx.configure(border_color=s.COLORS["bg"]))
+        salaire_entry.after(3000, lambda: salaire_entry.configure(border_color=s.COLORS["bg"]))
+
+    else:
+        add_employee(id_entry.get(), name_entry.get(), prenom_entry.get(), phone_entry.get(), role_combx.get(), genre_combx.get(), salaire_entry.get())
 
 # Création de la fenêtre principale
 dash = CTk()
@@ -194,10 +224,15 @@ showall_btn = CTkButton(right_frame,
                        ) 
 showall_btn.grid(row=0, column=3)
 
+""" triple vue elle affiche les données de la base de données dans une table avec des colonnes id, nom, prenom, téléphone, genre et salaire.
+Elle est configurée pour n'afficher que les en-têtes de colonnes et pas les données, 
+et elle a une barre de défilement verticale pour permettre à l'utilisateur de faire défiler les données 
+si elles dépassent la hauteur de la table. Les colonnes sont centrées et ont une largeur spécifique pour améliorer la lisibilité des données affichées. """
 triple_vue = ttk.Treeview(right_frame, height=10)
 triple_vue.grid(row=1, columnspan=4)
 triple_vue["columns"] = ["id", "Nom", "Prénom", "Téléphone", "Genre", "Salaire"]
 
+# Configuration des en-têtes de colonnes et des propriétés de la table
 triple_vue.heading("id", text="id")
 triple_vue.heading("Nom", text="Nom")
 triple_vue.heading("Prénom", text="Prénom")
@@ -205,12 +240,17 @@ triple_vue.heading("Téléphone", text="Téléphone")
 triple_vue.heading("Genre", text="Genre")
 triple_vue.heading("Salaire", text="Salaire")
 
+# Affichage des en-têtes de colonnes uniquement, sans les données
 triple_vue.config(show="headings")
 
+# Configuration de la barre de défilement verticale pour la table
 style = ttk.Style()
 
+# Configuration du thème pour la table
+style.theme_use("clam")
 style.configure("triple-vue", font=s.FONTS["label"])
 
+# Configuration de la barre de défilement verticale pour la table
 scroll_bar = ttk.Scrollbar(right_frame, orient=VERTICAL)
 scroll_bar.grid(row=1, column=4, sticky="ns")
 
@@ -243,13 +283,7 @@ add_btn = CTkButton(buttom_frame,
                        corner_radius=5,
                        cursor="hand2",
                        width=130,
-                       command=lambda:add_employee(id_entry.get(), 
-                                                   name_entry.get(), 
-                                                   prenom_entry.get(), 
-                                                   phone_entry.get(), 
-                                                   role_combx.get(), 
-                                                   genre_combx.get(), 
-                                                   salaire_entry.get())
+                       command=check_fields_impty
                        ) 
 add_btn.grid(row=0, column=1, padx=10, pady=5)
 
