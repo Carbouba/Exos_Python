@@ -6,7 +6,7 @@ from tkinter import ttk
 
 # importation des style et des fonctions
 import style as s
-from fonctions import add_employee
+
 
 """ Fonction qui verifie si les champs du formulaire sont vides ou pas, 
 si oui elle affiche un message d'erreur et met en surbrillance les champs vides, 
@@ -35,13 +35,14 @@ def check_fields_impty():
         salaire_entry.after(3000, lambda: salaire_entry.configure(border_color=s.COLORS["bg"]))
 
     else:
-        add_employee(id_entry.get(), name_entry.get(), prenom_entry.get(), phone_entry.get(), role_combx.get(), genre_combx.get(), salaire_entry.get())
+        pass
+        #(id_entry.get(), name_entry.get(), prenom_entry.get(), phone_entry.get(), role_combx.get(), genre_combx.get(), salaire_entry.get())
 
 # Création de la fenêtre principale
 dash = CTk()
 
 # Personnalisation de la fenêtre
-dash.title("Se connecter")
+dash.title("")
 dash.geometry("930x650+100+100")
 dash.resizable(0, 0)
 dash.configure(fg_color=s.COLORS["muted"])
@@ -327,3 +328,4 @@ del_all_btn.grid(row=0, column=4, padx=10, pady=5)
 # Démarrage
 # Lance l'application sur le menu principal puis démarre la boucle graphique.
 dash.mainloop()
+# Aucune ligne a ajouter après la boucle graphique, car elle bloque l'exécution du code tant que la fenêtre est ouverte.
