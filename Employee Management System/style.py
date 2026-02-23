@@ -2,6 +2,8 @@
 # Thème visuel global
 COLORS = {
     "bg": "#E3EFFF",
+    "bg2": "#f5f6fa",
+    "blue": "#4e73df",
     "surface": "#fafafa",
     "primary": "#2563EB",
     "primary_hover": "#1D4ED8",
@@ -17,10 +19,11 @@ COLORS = {
 }
 
 FONTS = {
-    "title": ("Helvetica", 24, "bold"),
-    "subtitle": ("Helvetica", 14),
-    "button": ("Helvetica", 16, "bold"),
-    "body": ("Helvetica", 13),
-    "label":("Montserrat", 13, "bold")
+    "title": ("Roboto", 24, "bold"),
+    "h1": ("Roboto", 30, "bold"),
+    "subtitle": ("Roboto", 14),
+    "button": ("Roboto", 16, "bold"),
+    "body": ("Roboto", 13),
+    "label":("Roboto", 13, "bold")
 }
 

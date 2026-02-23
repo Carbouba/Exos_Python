@@ -5,14 +5,6 @@ from PIL import Image
 
 import style as s
 
-
-""" Fonction qui verifie si les champs du formulaire sont vides ou pas, 
-si oui elle affiche un message d'erreur et met en surbrillance les champs vides, 
-sinon elle ajoute l'employé à la base de données et affiche un message de succès. """
-
-
-
-
 # Création de la fenêtre principale
 root = CTk()
 
@@ -48,14 +40,19 @@ def nettoyage():
     for widgets in type_zone_frame.winfo_children():
         widgets.destroy()
 
-def import_ems():
-    import ems
+def go_dashboard():
+    import dashboard
 
 def login_form():
 
     nettoyage()
 
     type_zone_frame.configure(height=300)
+
+
+    """ Fonction qui verifie si les champs du formulaire sont vides ou pas, 
+    si oui elle affiche un message d'erreur et met en surbrillance les champs vides, 
+    sinon elle ajoute l'employé à la base de données et affiche un message de succès. """
 
     def login_infos_check():
         if user_name_entry.get() == "" or user_mdp_entry.get() == "":
@@ -73,7 +70,7 @@ def login_form():
                         
         elif user_name_entry.get() == "adm" and user_mdp_entry.get() == "adm":
             root.destroy()
-            import_ems()
+            go_dashboard()
 
         else:
             msg = CTkLabel(type_zone_frame, 
@@ -180,6 +177,12 @@ def sign_up_form():
     nettoyage()
 
     type_zone_frame.configure( height=350)
+
+
+    """ Fonction qui verifie si les champs du formulaire sont vides ou pas, 
+    si oui elle affiche un message d'erreur et met en surbrillance les champs vides, 
+    sinon elle ajoute l'employé à la base de données et affiche un message de succès. """
+
 
     def sign_up_infos_check():
         if user_name_entry.get() == "" or user_mdp_entry.get() == "" or conf_user_mdp_entry.get() == "":

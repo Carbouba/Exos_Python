@@ -1,3 +1,5 @@
-import pymysql
+import sqlite3
 
-pymysql.connect(host="localhost", user="root", password="")
+
+con = sqlite3.connect("gestion_stock.db")
+cur =con.cursor()
